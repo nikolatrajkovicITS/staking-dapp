@@ -5,48 +5,41 @@ import {
   tryActivateConnector,
   tryDeactivateConnector,
 } from "@/libs/connections";
+import MetaMaskButton from "../MetaMaskButton";
 
-const ConnectWallet = ({
-  isEnabled,
-  isConnected,
-  connectionType,
-  onActivate,
-  onDeactivate,
-}: {
+const ConnectWallet: React.FC<{
   isEnabled: boolean;
   isConnected: boolean;
   connectionType: ConnectionType;
+  account?: string;
   onActivate: (connectionType: ConnectionType) => void;
   onDeactivate: () => void;
-}) => {
+}> = ({ isConnected, connectionType, account, onActivate, onDeactivate }) => {
   const onClick = async () => {
     if (isConnected) {
       const deactivation = await tryDeactivateConnector(
         getConnection(connectionType).connector
       );
-      // undefined means the deactivation failed
-      if (deactivation === undefined) {
-        return;
+      if (deactivation !== undefined) {
+        onDeactivate();
       }
-      onDeactivate();
       return;
     }
 
     const activation = await tryActivateConnector(
       getConnection(connectionType).connector
     );
-    if (!activation) {
-      return;
+    if (activation) {
+      onActivate(activation);
     }
-    onActivate(activation);
   };
 
   return (
-    <div>
-      <button onClick={onClick} disabled={!isEnabled}>
-        {isConnected ? "Disconnect" : "Connect"} {connectionType}
-      </button>
-    </div>
+    <MetaMaskButton
+      onClick={onClick}
+      isConnected={isConnected}
+      account={account}
+    />
   );
 };
 

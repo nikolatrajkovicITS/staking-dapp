@@ -1,11 +1,13 @@
+"use client";
+
+import React, { ReactNode, useEffect } from "react";
+import { Web3ReactProvider } from "@web3-react/core";
+import { Connector } from "@web3-react/types";
 import {
   ConnectionType,
   PRIORITIZED_CONNECTORS,
   getConnection,
 } from "@/libs/connections";
-import { Web3ReactProvider } from "@web3-react/core";
-import { Connector } from "@web3-react/types";
-import React, { ReactNode, useEffect } from "react";
 
 async function connect(connector: Connector) {
   try {
@@ -23,17 +25,16 @@ const connectEagerly = async () => {
   await connect(getConnection(ConnectionType.NETWORK).connector);
 };
 
-export const Web3ContextProvider = ({ children }: { children: ReactNode }) => {
+export const Web3Provider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     connectEagerly();
   }, []);
 
   return (
     <Web3ReactProvider
-      connectors={Object.values(PRIORITIZED_CONNECTORS).map((connector) => [
-        connector.connector,
-        connector.hooks,
-      ])}
+      connectors={Object.values(PRIORITIZED_CONNECTORS).map(
+        ({ connector, hooks }) => [connector, hooks]
+      )}
     >
       {children}
     </Web3ReactProvider>

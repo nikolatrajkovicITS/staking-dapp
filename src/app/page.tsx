@@ -1,12 +1,17 @@
-import { Button } from "@mui/material";
+import React from "react";
+import { Box, Typography } from "@mui/material";
 
-export default function Home() {
+const Home: React.FC = () => {
   return (
-    <main>
-      <h1>TEST </h1>
-      <Button variant="contained" color="primary">
-        Test Button
-      </Button>
-    </main>
+    <Box sx={{ textAlign: "center", mt: 5 }}>
+      <Typography variant="h2" gutterBottom>
+        Welcome to the Staking DApp
+      </Typography>
+      <Typography variant="h5">
+        Securely stake your assets and earn rewards.
+      </Typography>
+    </Box>
   );
-}
+};
+
+export default Home;

@@ -1,4 +1,7 @@
+import Footer from "@/components/molecules/Footer";
 import Header from "@/components/molecules/header/Header";
+import { Web3Provider } from "@/context/web3.provider";
+import ThemeRegistry from "@/themes/ThemeRegistry";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
@@ -16,8 +19,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Header />
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className} style={{ margin: 0 }}>
+        <ThemeRegistry>
+          <Web3Provider>
+            <Header />
+            {children}
+            <Footer />
+          </Web3Provider>
+        </ThemeRegistry>
+      </body>
     </html>
   );
 }
