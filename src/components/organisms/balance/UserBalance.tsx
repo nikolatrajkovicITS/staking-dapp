@@ -61,7 +61,7 @@ const UserBalance: React.FC<UserBalanceProps> = ({ account }) => {
   }
 
   return (
-    <BalanceCard sx={{ minWidth: 275, m: 2 }}>
+    <BalanceCard sx={{ minWidth: 275 }}>
       <CardHeader
         title={<CardTitle>Account Balance</CardTitle>}
         sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}

@@ -68,7 +68,7 @@ const PoolCard: React.FC<PoolCardProps> = ({
   onStake,
 }) => {
   return (
-    <GradientCard sx={{ minWidth: 275, m: 2 }}>
+    <GradientCard sx={{ minWidth: 275 }}>
       <CardHeader
         title={<CardTitle>{name}</CardTitle>}
         sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
