@@ -7,7 +7,6 @@ import {
   Box,
   styled,
 } from "@mui/material";
-import StakedBalance from "./StakedBalance";
 import useUserBalance from "@/hooks/balance/useUserBalance";
 
 const BalanceCard = styled(Card)(({ theme }) => ({
@@ -17,6 +16,7 @@ const BalanceCard = styled(Card)(({ theme }) => ({
   boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
   overflow: "hidden",
   marginBottom: theme.spacing(2),
+  minWidth: 275,
 }));
 
 const CardTitle = styled(Typography)(({ theme }) => ({
@@ -49,7 +49,7 @@ interface UserBalanceProps {
   account: string;
 }
 
-const UserBalance: React.FC<UserBalanceProps> = ({ account }) => {
+const UserBalanceCard: React.FC<UserBalanceProps> = ({ account }) => {
   const { balances, isLoading, isError } = useUserBalance(account);
 
   if (isLoading) {
@@ -61,7 +61,7 @@ const UserBalance: React.FC<UserBalanceProps> = ({ account }) => {
   }
 
   return (
-    <BalanceCard sx={{ minWidth: 275 }}>
+    <BalanceCard>
       <CardHeader
         title={<CardTitle>Account Balance</CardTitle>}
         sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
@@ -83,11 +83,9 @@ const UserBalance: React.FC<UserBalanceProps> = ({ account }) => {
           <Label>USDC Balance:</Label>
           <Value>{balances?.usdc}</Value>
         </DataField>
-
-        <StakedBalance />
       </CardContent>
     </BalanceCard>
   );
 };
 
-export default UserBalance;
+export default UserBalanceCard;

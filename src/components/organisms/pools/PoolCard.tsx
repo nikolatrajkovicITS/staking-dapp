@@ -9,6 +9,7 @@ import {
   Box,
   styled,
 } from "@mui/material";
+import { useWeb3React } from "@web3-react/core";
 
 interface PoolCardProps {
   name: string;
@@ -67,6 +68,8 @@ const PoolCard: React.FC<PoolCardProps> = ({
   rewards,
   onStake,
 }) => {
+  const { account } = useWeb3React();
+
   return (
     <GradientCard sx={{ minWidth: 275 }}>
       <CardHeader
@@ -89,9 +92,15 @@ const PoolCard: React.FC<PoolCardProps> = ({
       </CardContent>
       <CardActions>
         <Box sx={{ flexGrow: 1 }} />
-        <StakeButton onClick={onStake} variant="contained">
-          Stake
-        </StakeButton>
+        {account ? (
+          <StakeButton onClick={onStake} variant="contained">
+            Stake
+          </StakeButton>
+        ) : (
+          <Typography color="white" component="h1">
+            Connect your wallet to stake
+          </Typography>
+        )}
       </CardActions>
     </GradientCard>
   );
