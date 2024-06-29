@@ -1,63 +1,64 @@
 import { createTheme } from "@mui/material/styles";
+import colors from "./colors";
 
 export const theme = createTheme({
   palette: {
     primary: {
-      main: "#0e76a8", // Deep Blue
+      main: colors.deepBlue,
     },
     secondary: {
-      main: "#00a86b", // Green
+      main: colors.green,
     },
     error: {
-      main: "#e63946", // Red
+      main: colors.red,
     },
     background: {
-      default: "#1e1e2f", // Dark Grey
-      paper: "#2c2c3a", // Slightly lighter dark grey for cards and surfaces
+      default: colors.darkGrey,
+      paper: colors.lighterDarkGrey,
     },
     text: {
-      primary: "#e0e0e0", // Light Grey
-      secondary: "#a0a0a0", // Grey
+      primary: colors.lightGrey,
+      secondary: colors.grey,
     },
     info: {
-      main: "#17a2b8", // Light Blue
+      main: colors.lightBlue,
     },
     success: {
-      main: "#28a745", // Bright Green
+      main: colors.brightGreen,
     },
     warning: {
-      main: "#ffc107", // Yellow
+      main: colors.yellow,
     },
     common: {
-      black: "#000",
-      white: "#fff",
+      black: colors.black,
+      white: colors.white,
     },
-    divider: "#343a40", // Darker grey for dividers
+    divider: colors.darkerGrey,
   },
   typography: {
     fontFamily: "Roboto, sans-serif",
     h1: {
       fontSize: "2.5rem",
       fontWeight: 700,
-      color: "#e0e0e0",
+      color: colors.lightGrey,
     },
     h2: {
       fontSize: "2rem",
       fontWeight: 700,
-      color: "#e0e0e0",
+      color: colors.lightGrey,
     },
     h3: {
       fontSize: "1.75rem",
       fontWeight: 700,
-      color: "#e0e0e0",
+      color: colors.lightGrey,
     },
     body1: {
       fontSize: "1rem",
-      color: "#e0e0e0",
+      color: colors.lightGrey,
     },
     body2: {
       fontSize: "0.875rem",
-      color: "#a0a0a0",
+      color: colors.grey,
     },
     button: {
       fontSize: "1rem",
@@ -69,7 +70,7 @@ export const theme = createTheme({
     MuiAppBar: {
       styleOverrides: {
         root: {
-          backgroundColor: "#0e76a8",
+          backgroundColor: colors.deepBlue,
         },
       },
     },
@@ -81,18 +82,15 @@ export const theme = createTheme({
           fontWeight: 700,
         },
         contained: {
-          backgroundColor: "#00a86b",
-          color: "#fff",
-          "&:hover": {
-            backgroundColor: "#008c5e",
-          },
+          backgroundColor: colors.green,
+          color: colors.white,
         },
         outlined: {
-          borderColor: "#00a86b",
-          color: "#00a86b",
+          borderColor: colors.green,
+          color: colors.green,
           "&:hover": {
-            backgroundColor: "#00a86b",
-            color: "#fff",
+            backgroundColor: colors.green,
+            color: colors.white,
           },
         },
       },
@@ -100,8 +98,8 @@ export const theme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          backgroundColor: "#2c2c3a",
-          color: "#e0e0e0",
+          backgroundColor: colors.lighterDarkGrey,
+          color: colors.lightGrey,
           borderRadius: "12px",
           boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
         },
@@ -110,15 +108,15 @@ export const theme = createTheme({
     MuiPaper: {
       styleOverrides: {
         root: {
-          backgroundColor: "#2c2c3a",
-          color: "#e0e0e0",
+          backgroundColor: colors.lighterDarkGrey,
+          color: colors.lightGrey,
         },
       },
     },
     MuiDivider: {
       styleOverrides: {
         root: {
-          backgroundColor: "#343a40",
+          backgroundColor: colors.darkerGrey,
         },
       },
     },
