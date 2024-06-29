@@ -1,4 +1,3 @@
-import Footer from "@/components/molecules/Footer";
 import Header from "@/components/molecules/header/Header";
 import { Web3Provider } from "@/context/web3.provider";
 import ThemeRegistry from "@/themes/ThemeRegistry";
@@ -24,7 +23,6 @@ export default function RootLayout({
           <Web3Provider>
             <Header />
             {children}
-            <Footer />
           </Web3Provider>
         </ThemeRegistry>
       </body>
