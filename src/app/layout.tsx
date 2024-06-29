@@ -1,6 +1,7 @@
 import Header from "@/components/molecules/header/Header";
 import { Web3Provider } from "@/context/web3.provider";
 import ThemeRegistry from "@/themes/ThemeRegistry";
+import { Box } from "@mui/material";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
@@ -22,7 +23,7 @@ export default function RootLayout({
         <ThemeRegistry>
           <Web3Provider>
             <Header />
-            {children}
+            <Box component="main">{children}</Box>
           </Web3Provider>
         </ThemeRegistry>
       </body>

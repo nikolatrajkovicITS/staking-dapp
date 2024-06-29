@@ -25,7 +25,7 @@ const poolData = [
 
 const Pools: React.FC = () => {
   return (
-    <Box sx={{ flexGrow: 1, p: 3 }}>
+    <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={3}>
         {poolData.map((pool) => (
           <Grid item xs={12} sm={6} md={4} key={pool.name}>
