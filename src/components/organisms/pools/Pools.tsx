@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Grid } from "@mui/material";
 import PoolCard from "@/components/organisms/pools/PoolCard";
+import { useWeb3React } from "@web3-react/core";
 
 const poolData = [
   {
@@ -24,8 +25,10 @@ const poolData = [
 ];
 
 const Pools: React.FC = () => {
+  const { account } = useWeb3React();
+
   return (
-    <Box sx={{ flexGrow: 1, mt: 5 }}>
+    <Box sx={{ flexGrow: 1, mt: account ? 5 : 0 }}>
       <Grid container spacing={3}>
         {poolData.map((pool) => (
           <Grid item xs={12} sm={6} md={4} key={pool.name}>

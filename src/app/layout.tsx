@@ -23,7 +23,7 @@ export default function RootLayout({
         <ThemeRegistry>
           <Web3Provider>
             <Header />
-            <Box component="main" p={2} pb={5}>
+            <Box component="main" p={3} pb={5}>
               {children}
             </Box>
           </Web3Provider>

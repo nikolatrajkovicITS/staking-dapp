@@ -16,7 +16,7 @@ const Home: React.FC = () => {
 
       <Pools />
 
-      <TransactionHistory />
+      {account && <TransactionHistory />}
     </Box>
   );
 };
