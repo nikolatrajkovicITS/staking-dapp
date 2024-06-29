@@ -26,14 +26,22 @@ const DisconnectButton = styled(Button)(({ theme }) => ({
   minWidth: 0,
 }));
 
-const ConnectWallet: React.FC<{
+interface ConnectWalletProps {
   isEnabled: boolean;
   isConnected: boolean;
   connectionType: ConnectionType;
   account?: string;
   onActivate: (connectionType: ConnectionType) => void;
   onDeactivate: () => void;
-}> = ({ isConnected, connectionType, account, onActivate, onDeactivate }) => {
+}
+
+const ConnectWallet: React.FC<ConnectWalletProps> = ({
+  isConnected,
+  connectionType,
+  account,
+  onActivate,
+  onDeactivate,
+}) => {
   const userAddress = useMemo(
     () => (account ? truncateAddress(account) : ""),
     [account]

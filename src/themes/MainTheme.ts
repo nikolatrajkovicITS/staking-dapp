@@ -28,6 +28,10 @@ export const theme = createTheme({
     warning: {
       main: "#ffc107", // Yellow
     },
+    common: {
+      black: "#000",
+      white: "#fff",
+    },
     divider: "#343a40", // Darker grey for dividers
   },
   typography: {
