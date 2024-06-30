@@ -1,4 +1,5 @@
 import Header from "@/components/molecules/header/Header";
+import ModalManager from "@/components/organisms/modals/ModalManager";
 import ModalState from "@/context/modal/modal.provider";
 import { Web3Provider } from "@/context/web3provider/web3.provider";
 import ThemeRegistry from "@/themes/ThemeRegistry";
@@ -25,9 +26,12 @@ export default function RootLayout({
           <Web3Provider>
             <ModalState>
               <Header />
+
               <Box component="main" p={3} pb={5}>
                 {children}
               </Box>
+
+              <ModalManager />
             </ModalState>
           </Web3Provider>
         </ThemeRegistry>

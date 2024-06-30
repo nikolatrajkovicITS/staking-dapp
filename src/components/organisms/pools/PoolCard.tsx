@@ -10,6 +10,8 @@ import {
   styled,
 } from "@mui/material";
 import { useWeb3React } from "@web3-react/core";
+import { ModalsKeys } from "@/context/modal/modal.types";
+import useModalState from "@/hooks/context/useModalState";
 
 interface PoolCardProps {
   name: string;
@@ -69,6 +71,10 @@ const PoolCard: React.FC<PoolCardProps> = ({
   onStake,
 }) => {
   const { account } = useWeb3React();
+  const { openModal } = useModalState();
+
+  const handleOpenDeposit = () =>
+    openModal({ name: ModalsKeys.DEPOSIT, poolData: { name } });
 
   return (
     <GradientCard sx={{ minWidth: 275 }}>
@@ -93,7 +99,7 @@ const PoolCard: React.FC<PoolCardProps> = ({
       <CardActions>
         <Box sx={{ flexGrow: 1 }} />
         {account ? (
-          <StakeButton onClick={onStake} variant="contained">
+          <StakeButton onClick={handleOpenDeposit} variant="contained">
             Stake
           </StakeButton>
         ) : (
