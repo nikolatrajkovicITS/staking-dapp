@@ -37,7 +37,6 @@ const Pools: React.FC = () => {
               amountDeposited={pool.amountDeposited}
               apy={pool.apy}
               rewards={pool.rewards}
-              onStake={() => {}}
             />
           </Grid>
         ))}

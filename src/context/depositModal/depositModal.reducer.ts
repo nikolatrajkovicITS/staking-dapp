@@ -1,6 +1,7 @@
 import {
   DepositModalActions,
   DepositModalStateType,
+  DepositModalActionTypes,
 } from "./depositModal.types";
 
 const depositModalReducer = (
@@ -8,16 +9,36 @@ const depositModalReducer = (
   action: DepositModalActions
 ): DepositModalStateType => {
   switch (action.type) {
-    case "SET_AMOUNT":
+    case DepositModalActionTypes.SET_AMOUNT:
       return {
         ...state,
-        amount: action.payload,
+        amount: action.amount,
       };
-    case "SET_TX_HASH":
+    case DepositModalActionTypes.COMPLETE_TRANSACTION:
       return {
         ...state,
-        txHash: action.payload,
+        txHash: action.txHash,
+        completed: true,
+        loading: false,
       };
+    case DepositModalActionTypes.START_LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
+    case DepositModalActionTypes.STOP_LOADING:
+      return {
+        ...state,
+        loading: false,
+      };
+    case DepositModalActionTypes.SET_ERROR:
+      return {
+        ...state,
+        error: action.error,
+      };
+
+    default:
+      return state;
   }
 };
 

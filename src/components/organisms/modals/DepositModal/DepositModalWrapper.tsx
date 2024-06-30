@@ -1,10 +1,12 @@
-import DepositModalState from "@/context/depositModal/depositModal.provider";
-import DepositModal, { DepositModalProps } from ".";
+import DepositModalProvider from "@/context/depositModal/depositModal.provider";
+import DepositModal from ".";
 
-const DepositModalWrapper: React.FC<DepositModalProps> = ({ handleClose }) => (
-  <DepositModalState>
+const DepositModalWrapper: React.FC<{ handleClose: () => void }> = ({
+  handleClose,
+}) => (
+  <DepositModalProvider>
     <DepositModal handleClose={handleClose} />
-  </DepositModalState>
+  </DepositModalProvider>
 );
 
 export default DepositModalWrapper;

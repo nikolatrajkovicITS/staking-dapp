@@ -18,7 +18,6 @@ interface PoolCardProps {
   amountDeposited: string;
   apy: string;
   rewards: string;
-  onStake: () => void;
 }
 
 const GradientCard = styled(Card)(({ theme }) => ({
@@ -68,13 +67,17 @@ const PoolCard: React.FC<PoolCardProps> = ({
   amountDeposited,
   apy,
   rewards,
-  onStake,
 }) => {
   const { account } = useWeb3React();
   const { openModal } = useModalState();
 
+  const poolData = {
+    name: "Sample Pool",
+    totalDeposited: 1000,
+  };
+
   const handleOpenDeposit = () =>
-    openModal({ name: ModalsKeys.DEPOSIT, poolData: { name } });
+    openModal({ name: ModalsKeys.DEPOSIT, poolData: poolData });
 
   return (
     <GradientCard sx={{ minWidth: 275 }}>

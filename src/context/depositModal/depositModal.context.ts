@@ -1,14 +1,23 @@
 import { createContext } from "react";
-
 import {
-  DepositModalActions,
   DepositModalStateType,
-} from "@/context/depositModal/depositModal.types";
-import { ContextWrapper } from "@/types/utils";
+  DepositModalActions,
+} from "./depositModal.types";
 
-const depositModalContext = createContext(
-  {} as ContextWrapper<DepositModalStateType, DepositModalActions>
-);
-depositModalContext.displayName = "DepositModalContext";
+export const initialState: DepositModalStateType = {
+  loading: false,
+  completed: false,
+  amount: "",
+  txHash: undefined,
+  error: null,
+};
 
-export default depositModalContext;
+const DepositModalContext = createContext<{
+  state: DepositModalStateType;
+  dispatch: React.Dispatch<DepositModalActions>;
+}>({
+  state: initialState,
+  dispatch: () => null,
+});
+
+export default DepositModalContext;

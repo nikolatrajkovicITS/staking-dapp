@@ -1,7 +1,9 @@
 import { useCallback, useContext } from "react";
-
 import depositModalContext from "@/context/depositModal/depositModal.context";
-import { DepositModalTypes } from "@/context/depositModal/depositModal.types";
+import {
+  DepositModalTypes,
+  DepositModalActionTypes,
+} from "@/context/depositModal/depositModal.types";
 
 const useDepositModalState = (): DepositModalTypes => {
   const context = useContext(depositModalContext);
@@ -10,26 +12,56 @@ const useDepositModalState = (): DepositModalTypes => {
     throw new Error("DepositModalContext must be used within its provider");
   }
 
-  const { dispatch } = context;
+  const { state, dispatch } = context;
 
   const setAmount = useCallback(
     (amount: string) =>
       dispatch({
-        type: "SET_AMOUNT",
-        payload: amount,
+        type: DepositModalActionTypes.SET_AMOUNT,
+        amount,
       }),
     [dispatch]
   );
 
   const setTxHash = useCallback(
-    (txHash: string) => dispatch({ type: "SET_TX_HASH", payload: txHash }),
+    (txHash: string) =>
+      dispatch({ type: DepositModalActionTypes.COMPLETE_TRANSACTION, txHash }),
+    [dispatch]
+  );
+
+  const startLoading = useCallback(
+    () => dispatch({ type: DepositModalActionTypes.START_LOADING }),
+    [dispatch]
+  );
+
+  const stopLoading = useCallback(
+    () => dispatch({ type: DepositModalActionTypes.STOP_LOADING }),
+    [dispatch]
+  );
+
+  const setError = useCallback(
+    (error: string) =>
+      dispatch({ type: DepositModalActionTypes.SET_ERROR, error }),
+    [dispatch]
+  );
+
+  const updateTransactionStatus = useCallback(
+    () =>
+      dispatch({
+        type: DepositModalActionTypes.COMPLETE_TRANSACTION,
+        txHash: "",
+      }),
     [dispatch]
   );
 
   return {
-    ...context,
+    ...state,
     setAmount,
     setTxHash,
+    startLoading,
+    stopLoading,
+    setError,
+    updateTransactionStatus,
   };
 };
 
