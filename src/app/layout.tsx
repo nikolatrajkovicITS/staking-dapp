@@ -1,5 +1,6 @@
 import Header from "@/components/molecules/header/Header";
-import { Web3Provider } from "@/context/web3.provider";
+import ModalState from "@/context/modal/modal.provider";
+import { Web3Provider } from "@/context/web3provider/web3.provider";
 import ThemeRegistry from "@/themes/ThemeRegistry";
 import { Box } from "@mui/material";
 import type { Metadata } from "next";
@@ -22,10 +23,12 @@ export default function RootLayout({
       <body className={inter.className} style={{ margin: 0 }}>
         <ThemeRegistry>
           <Web3Provider>
-            <Header />
-            <Box component="main" p={3} pb={5}>
-              {children}
-            </Box>
+            <ModalState>
+              <Header />
+              <Box component="main" p={3} pb={5}>
+                {children}
+              </Box>
+            </ModalState>
           </Web3Provider>
         </ThemeRegistry>
       </body>
