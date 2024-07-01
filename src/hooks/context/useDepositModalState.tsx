@@ -1,12 +1,12 @@
 import { useCallback, useContext } from "react";
-import depositModalContext from "@/context/depositModal/depositModal.context";
+import DepositMoDalContext from "@/context/depositModal/depositModal.context";
 import {
   DepositModalTypes,
   DepositModalActionTypes,
 } from "@/context/depositModal/depositModal.types";
 
 const useDepositModalState = (): DepositModalTypes => {
-  const context = useContext(depositModalContext);
+  const context = useContext(DepositMoDalContext);
 
   if (!Object.keys(context).length) {
     throw new Error("DepositModalContext must be used within its provider");
