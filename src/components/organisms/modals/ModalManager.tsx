@@ -6,6 +6,7 @@ import DepositModalWrapper from "@/components/organisms/modals/DepositModal/Depo
 
 import { Modals, ModalsKeys } from "@/context/modal/modal.types";
 import DialogWrapper from "@/components/atoms/DialogWrapper";
+import WithdrawModalWrapper from "./WithdrawModal/WithdrawModalWrapper";
 
 type ModalDetails = {
   component: JSX.Element;
@@ -19,6 +20,10 @@ export const getModal = (
     case ModalsKeys.DEPOSIT:
       return {
         component: <DepositModalWrapper handleClose={handleClose} />,
+      };
+    case ModalsKeys.WITHDRAW:
+      return {
+        component: <WithdrawModalWrapper handleClose={handleClose} />,
       };
     default:
       return null;

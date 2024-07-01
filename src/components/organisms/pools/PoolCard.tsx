@@ -79,6 +79,9 @@ const PoolCard: React.FC<PoolCardProps> = ({
   const handleOpenDeposit = () =>
     openModal({ name: ModalsKeys.DEPOSIT, poolData: poolData });
 
+  const handleOpenWithdraw = () =>
+    openModal({ name: ModalsKeys.WITHDRAW, poolData: poolData });
+
   return (
     <GradientCard sx={{ minWidth: 275 }}>
       <CardHeader
@@ -102,9 +105,18 @@ const PoolCard: React.FC<PoolCardProps> = ({
       <CardActions>
         <Box sx={{ flexGrow: 1 }} />
         {account ? (
-          <StakeButton onClick={handleOpenDeposit} variant="contained">
-            Stake
-          </StakeButton>
+          <Box>
+            <StakeButton
+              onClick={handleOpenDeposit}
+              variant="contained"
+              sx={{ mr: 1 }}
+            >
+              Stake
+            </StakeButton>
+            <StakeButton onClick={handleOpenWithdraw} variant="contained">
+              Withdraw
+            </StakeButton>
+          </Box>
         ) : (
           <Typography color="white" component="h1">
             Connect your wallet to stake
