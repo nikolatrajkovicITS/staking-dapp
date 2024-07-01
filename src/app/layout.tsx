@@ -1,6 +1,7 @@
 import Header from "@/components/molecules/header/Header";
 import ModalManager from "@/components/organisms/modals/ModalManager";
 import ModalState from "@/context/modal/modal.provider";
+import ToastState from "@/context/toast/toast.provider";
 import { Web3Provider } from "@/context/web3provider/web3.provider";
 import ThemeRegistry from "@/themes/ThemeRegistry";
 import { Box } from "@mui/material";
@@ -25,13 +26,14 @@ export default function RootLayout({
         <ThemeRegistry>
           <Web3Provider>
             <ModalState>
-              <Header />
+              <ToastState>
+                <Header />
 
-              <Box component="main" p={3} pb={5}>
-                {children}
-              </Box>
-
-              <ModalManager />
+                <Box component="main" p={3} pb={5}>
+                  {children}
+                </Box>
+                <ModalManager />
+              </ToastState>
             </ModalState>
           </Web3Provider>
         </ThemeRegistry>
