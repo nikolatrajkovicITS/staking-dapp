@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Box, Grid } from "@mui/material";
+import { Box } from "@mui/material";
 import { useWeb3React } from "@web3-react/core";
 import Pools from "@/components/organisms/pools/Pools";
 import TransactionHistory from "@/components/organisms/TransactionHistory";

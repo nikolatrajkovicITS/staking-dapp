@@ -20,12 +20,12 @@ interface PoolCardProps {
   rewards: string;
 }
 
-const GradientCard = styled(Card)(({ theme }) => ({
-  background: "linear-gradient(135deg, #2c3e50 30%, #4ca1af 100%)",
+const CardStyled = styled(Card)(({ theme }) => ({
+  background: `linear-gradient(135deg, ${theme.palette.background.default} 30%, ${theme.palette.background.paper} 100%)`,
   color: theme.palette.text.primary,
-  borderRadius: theme.shape.borderRadius,
   boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
   overflow: "hidden",
+  borderRadius: "16px",
 }));
 
 const CardTitle = styled(Typography)(({ theme }) => ({
@@ -83,7 +83,7 @@ const PoolCard: React.FC<PoolCardProps> = ({
     openModal({ name: ModalsKeys.WITHDRAW, poolData: poolData });
 
   return (
-    <GradientCard sx={{ minWidth: 275 }}>
+    <CardStyled sx={{ minWidth: 275 }}>
       <CardHeader
         title={<CardTitle>{name}</CardTitle>}
         sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
@@ -123,7 +123,7 @@ const PoolCard: React.FC<PoolCardProps> = ({
           </Typography>
         )}
       </CardActions>
-    </GradientCard>
+    </CardStyled>
   );
 };
 

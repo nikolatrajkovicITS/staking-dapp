@@ -1,6 +1,6 @@
 "use client";
 
-import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+import { AppBar, Toolbar, Typography, alpha } from "@mui/material";
 import { useState } from "react";
 import ConnectWallet from "./ConnectWallet";
 import { ConnectionType } from "@/libs/connections";
@@ -27,7 +27,13 @@ const Header: React.FC = () => {
     (isConnectionActive && activeConnectionType === null);
 
   return (
-    <AppBar position="static" color="primary" sx={{ mb: 2 }}>
+    <AppBar
+      position="static"
+      color="primary"
+      sx={(theme) => ({
+        background: alpha(theme.palette.background.paper, 0.04),
+      })}
+    >
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           Staking DApp

@@ -6,9 +6,13 @@ import { Web3Provider } from "@/context/web3provider/web3.provider";
 import ThemeRegistry from "@/themes/ThemeRegistry";
 import { Box } from "@mui/material";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
+import ParticlesBackground from "@/components/atoms/ParticlesBackground";
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className} style={{ margin: 0 }}>
+      <body className={roboto.className} style={{ margin: 0 }}>
         <ThemeRegistry>
           <Web3Provider>
             <ModalState>
@@ -30,6 +34,8 @@ export default function RootLayout({
                 <Header />
 
                 <Box component="main" p={3} pb={5}>
+                  <ParticlesBackground />
+
                   {children}
                 </Box>
                 <ModalManager />

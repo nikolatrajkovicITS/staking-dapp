@@ -1,13 +1,17 @@
 "use client";
 
 import React, { ReactNode, useEffect } from "react";
-import { Web3ReactProvider } from "@web3-react/core";
+import { Web3ReactProvider, useWeb3React } from "@web3-react/core";
 import { Connector } from "@web3-react/types";
 import {
   ConnectionType,
   PRIORITIZED_CONNECTORS,
   getConnection,
 } from "@/libs/connections";
+
+const connectEagerly = async () => {
+  await connect(getConnection(ConnectionType.INJECTED).connector);
+};
 
 async function connect(connector: Connector) {
   try {
@@ -21,13 +25,12 @@ async function connect(connector: Connector) {
   }
 }
 
-const connectEagerly = async () => {
-  await connect(getConnection(ConnectionType.NETWORK).connector);
-};
-
 export const Web3Provider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
-    connectEagerly();
+    const isWalletConnected = localStorage.getItem("isWalletConnected");
+    if (isWalletConnected === "true") {
+      connectEagerly();
+    }
   }, []);
 
   return (

@@ -13,12 +13,12 @@ export const theme = createTheme({
       main: colors.red,
     },
     background: {
-      default: colors.darkGrey,
+      default: colors.midnightBlueBackground,
       paper: colors.lighterDarkGrey,
     },
     text: {
-      primary: colors.lightGrey,
-      secondary: colors.grey,
+      primary: colors.titleColor,
+      secondary: colors.textColor,
     },
     info: {
       main: colors.lightBlue,
@@ -40,21 +40,21 @@ export const theme = createTheme({
     h1: {
       fontSize: "2.5rem",
       fontWeight: 700,
-      color: colors.lightGrey,
+      color: colors.titleColor,
     },
     h2: {
       fontSize: "2rem",
       fontWeight: 700,
-      color: colors.lightGrey,
+      color: colors.titleColor,
     },
     h3: {
       fontSize: "1.75rem",
       fontWeight: 700,
-      color: colors.lightGrey,
+      color: colors.titleColor,
     },
     body1: {
       fontSize: "1rem",
-      color: colors.lightGrey,
+      color: colors.textColor,
     },
     body2: {
       fontSize: "0.875rem",
@@ -77,20 +77,13 @@ export const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: "8px",
+          borderRadius: "12px",
           textTransform: "none",
           fontWeight: 700,
-        },
-        contained: {
-          backgroundColor: colors.green,
+          backgroundColor: colors.buttonBackground,
           color: colors.white,
-        },
-        outlined: {
-          borderColor: colors.green,
-          color: colors.green,
           "&:hover": {
-            backgroundColor: colors.green,
-            color: colors.white,
+            backgroundColor: colors.deepBlue,
           },
         },
       },

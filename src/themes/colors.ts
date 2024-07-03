@@ -1,4 +1,8 @@
 const colors = {
+  midnightBlueBackground: "#131823",
+  titleColor: "#f8f9fa",
+  textColor: "#d1d1e0",
+  buttonBackground: "#2a2e38",
   deepBlue: "#0e76a8",
   green: "#00a86b",
   red: "#e63946",
