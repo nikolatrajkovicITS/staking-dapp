@@ -1,10 +1,11 @@
 "use client";
 
-import { AppBar, Toolbar, Typography, alpha } from "@mui/material";
+import { AppBar, Box, Toolbar, alpha } from "@mui/material";
 import { useState } from "react";
 import ConnectWallet from "./ConnectWallet";
 import { ConnectionType } from "@/libs/connections";
 import { useWeb3React } from "@web3-react/core";
+import Logo from "@/assets/logo/Logo";
 
 const Header: React.FC = () => {
   const [activeConnectionType, setActiveConnectionType] =
@@ -31,13 +32,15 @@ const Header: React.FC = () => {
       position="static"
       color="primary"
       sx={(theme) => ({
+        p: 1,
         background: alpha(theme.palette.background.paper, 0.04),
       })}
     >
       <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Staking DApp
-        </Typography>
+        <Box sx={{ flexGrow: 1 }}>
+          <Logo />
+        </Box>
+
         <ConnectWallet
           account={account}
           isEnabled={

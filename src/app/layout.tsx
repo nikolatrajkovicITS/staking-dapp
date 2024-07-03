@@ -33,7 +33,7 @@ export default function RootLayout({
               <ToastState>
                 <Header />
 
-                <Box component="main" p={3} pb={5}>
+                <Box component="main" p={4}>
                   <ParticlesBackground />
 
                   {children}

@@ -8,9 +8,10 @@ import {
   styled,
 } from "@mui/material";
 import useUserBalance from "@/hooks/balance/useUserBalance";
+import colors from "@/themes/colors";
 
 const BalanceCard = styled(Card)(({ theme }) => ({
-  background: `linear-gradient(135deg, ${theme.palette.primary.main} 30%, ${theme.palette.secondary.main} 100%)`,
+  background: colors.darkGradientBackground,
   color: theme.palette.text.primary,
   borderRadius: theme.shape.borderRadius,
   boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",

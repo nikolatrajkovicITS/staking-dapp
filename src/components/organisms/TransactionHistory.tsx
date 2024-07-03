@@ -12,6 +12,7 @@ import {
   TablePagination,
 } from "@mui/material";
 import useTransactionsHistory from "@/hooks/useTransactionsHistory";
+import colors from "@/themes/colors";
 
 const TransactionHistory: React.FC = () => {
   const { transactions, isLoading, isError } = useTransactionsHistory();
@@ -38,10 +39,18 @@ const TransactionHistory: React.FC = () => {
   };
 
   return (
-    <Box sx={{ mt: 5 }}>
-      <Typography variant="h6" gutterBottom>
+    <Box
+      sx={{
+        mt: 5,
+        background: colors.darkGradientBackground,
+        padding: 3,
+        borderRadius: 2,
+      }}
+    >
+      <Typography variant="h5" mb={1.5} color="white">
         Transaction History
       </Typography>
+
       <TableContainer component={Paper}>
         <Table>
           <TableHead>

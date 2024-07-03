@@ -12,6 +12,7 @@ import {
 import { useWeb3React } from "@web3-react/core";
 import { ModalsKeys } from "@/context/modal/modal.types";
 import useModalState from "@/hooks/context/useModalState";
+import colors from "@/themes/colors";
 
 interface PoolCardProps {
   name: string;
@@ -21,7 +22,7 @@ interface PoolCardProps {
 }
 
 const CardStyled = styled(Card)(({ theme }) => ({
-  background: `linear-gradient(135deg, ${theme.palette.background.default} 30%, ${theme.palette.background.paper} 100%)`,
+  background: colors.darkGradientBackground,
   color: theme.palette.text.primary,
   boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
   overflow: "hidden",
@@ -34,11 +35,13 @@ const CardTitle = styled(Typography)(({ theme }) => ({
   color: theme.palette.common.white,
 }));
 
-const StakeButton = styled(Button)(({ theme }) => ({
-  backgroundColor: theme.palette.secondary.main,
+const ActionButton = styled(Button)(({ theme }) => ({
+  backgroundColor: theme.palette.primary.main,
   color: theme.palette.common.white,
+  borderRadius: theme.shape.borderRadius,
+
   "&:hover": {
-    backgroundColor: theme.palette.secondary.dark,
+    backgroundColor: theme.palette.primary.dark,
   },
 }));
 
@@ -102,23 +105,23 @@ const PoolCard: React.FC<PoolCardProps> = ({
           <Value>{rewards}</Value>
         </DataField>
       </CardContent>
-      <CardActions>
+      <CardActions sx={{ p: 2, pt: 0 }}>
         <Box sx={{ flexGrow: 1 }} />
         {account ? (
           <Box>
-            <StakeButton
+            <ActionButton
               onClick={handleOpenDeposit}
               variant="contained"
               sx={{ mr: 1 }}
             >
               Stake
-            </StakeButton>
-            <StakeButton onClick={handleOpenWithdraw} variant="contained">
+            </ActionButton>
+            <ActionButton onClick={handleOpenWithdraw} variant="contained">
               Withdraw
-            </StakeButton>
+            </ActionButton>
           </Box>
         ) : (
-          <Typography color="white" component="h1">
+          <Typography component="h1" fontWeight="bold">
             Connect your wallet to stake
           </Typography>
         )}

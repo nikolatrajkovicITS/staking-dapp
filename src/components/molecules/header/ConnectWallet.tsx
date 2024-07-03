@@ -11,11 +11,7 @@ import MetamaskButton from "@/components/atoms/MetamaskButton";
 import { truncateAddress } from "@/utils";
 
 const DisconnectButton = styled(Button)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.dark,
-  color: theme.palette.text.primary,
-  "&:hover": {
-    backgroundColor: theme.palette.primary.dark,
-  },
+  backgroundColor: theme.palette.primary.main,
   display: "flex",
   alignItems: "center",
   padding: theme.spacing(1, 2),
@@ -24,6 +20,10 @@ const DisconnectButton = styled(Button)(({ theme }) => ({
   fontWeight: theme.typography.button.fontWeight,
   marginLeft: theme.spacing(1),
   minWidth: 0,
+
+  "&:hover": {
+    backgroundColor: theme.palette.primary.dark,
+  },
 }));
 
 interface ConnectWalletProps {
@@ -80,7 +80,9 @@ const ConnectWallet: React.FC<ConnectWalletProps> = ({
           onClick={handleWalletConnection}
           endIcon={<CloseIcon fontSize="large" />}
         >
-          <Typography variant="body1">{userAddress}</Typography>
+          <Typography variant="body1" color="white">
+            {userAddress}
+          </Typography>
         </DisconnectButton>
       ) : (
         <MetamaskButton onClick={handleWalletConnection} />

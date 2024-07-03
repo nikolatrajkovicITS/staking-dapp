@@ -4,7 +4,7 @@ import colors from "./colors";
 export const theme = createTheme({
   palette: {
     primary: {
-      main: colors.deepBlue,
+      main: colors.turquoise,
     },
     secondary: {
       main: colors.green,
@@ -13,11 +13,11 @@ export const theme = createTheme({
       main: colors.red,
     },
     background: {
-      default: colors.midnightBlueBackground,
+      default: colors.midnightBlue,
       paper: colors.lighterDarkGrey,
     },
     text: {
-      primary: colors.titleColor,
+      primary: colors.white,
       secondary: colors.textColor,
     },
     info: {
@@ -70,7 +70,7 @@ export const theme = createTheme({
     MuiAppBar: {
       styleOverrides: {
         root: {
-          backgroundColor: colors.deepBlue,
+          backgroundColor: colors.turquoise,
         },
       },
     },
@@ -80,10 +80,10 @@ export const theme = createTheme({
           borderRadius: "12px",
           textTransform: "none",
           fontWeight: 700,
-          backgroundColor: colors.buttonBackground,
+          backgroundColor: colors.turquoise,
           color: colors.white,
           "&:hover": {
-            backgroundColor: colors.deepBlue,
+            backgroundColor: colors.turquoise,
           },
         },
       },

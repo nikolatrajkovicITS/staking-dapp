@@ -1,9 +1,7 @@
 const colors = {
-  midnightBlueBackground: "#131823",
   titleColor: "#f8f9fa",
   textColor: "#d1d1e0",
-  buttonBackground: "#2a2e38",
-  deepBlue: "#0e76a8",
+  turquoise: "#00d1cd",
   green: "#00a86b",
   red: "#e63946",
   darkGrey: "#1e1e2f",
@@ -16,6 +14,8 @@ const colors = {
   black: "#000",
   white: "#fff",
   darkerGrey: "#343a40",
+  midnightBlue: "#131823",
+  darkGradientBackground: "linear-gradient(135deg, #131823 30%, #2c2c3a 100%)",
 };
 
 export default colors;
