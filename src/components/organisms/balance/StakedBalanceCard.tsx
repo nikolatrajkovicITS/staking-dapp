@@ -6,6 +6,7 @@ import {
   Typography,
   Box,
   styled,
+  LinearProgress,
 } from "@mui/material";
 import { useStakedBalances } from "@/hooks/balance/useStakedBalances";
 import calculateTotalStaked from "@/utils/calculateTotalStaked";
@@ -38,12 +39,22 @@ const StakedCard = styled(Card)(({ theme }) => ({
   boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
   marginBottom: theme.spacing(2),
   minWidth: 275,
+  "&:hover": {
+    boxShadow: `0 6px 30px ${theme.palette.primary.main}`,
+  },
 }));
 
 const CardTitle = styled(Typography)(({ theme }) => ({
   fontSize: theme.typography.h5.fontSize,
   fontWeight: theme.typography.h5.fontWeight,
   color: theme.palette.common.white,
+  textAlign: "center",
+}));
+
+const LoadingBar = styled(LinearProgress)(({ theme }) => ({
+  marginTop: theme.spacing(2),
+  height: theme.spacing(1),
+  borderRadius: theme.shape.borderRadius,
 }));
 
 const StakedBalanceCard: React.FC = () => {
@@ -55,11 +66,28 @@ const StakedBalanceCard: React.FC = () => {
   );
 
   if (isLoading) {
-    return <Typography>Loading...</Typography>;
+    return (
+      <StakedCard>
+        <CardHeader
+          title={<CardTitle>Loading...</CardTitle>}
+          sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
+        />
+        <CardContent>
+          <LoadingBar color="secondary" />
+        </CardContent>
+      </StakedCard>
+    );
   }
 
   if (isError) {
-    return <Typography>Error loading staked balances.</Typography>;
+    return (
+      <StakedCard>
+        <CardHeader
+          title={<CardTitle>Error loading staked balances</CardTitle>}
+          sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
+        />
+      </StakedCard>
+    );
   }
 
   return (

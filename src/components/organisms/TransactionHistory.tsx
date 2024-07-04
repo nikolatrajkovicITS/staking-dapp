@@ -10,9 +10,53 @@ import {
   Typography,
   Paper,
   TablePagination,
+  styled,
+  LinearProgress,
 } from "@mui/material";
 import useTransactionsHistory from "@/hooks/useTransactionsHistory";
 import colors from "@/themes/colors";
+
+const CustomBox = styled(Box)(({ theme }) => ({
+  marginTop: theme.spacing(5),
+  background: colors.darkGradientBackground,
+  padding: theme.spacing(4),
+  borderRadius: theme.shape.borderRadius,
+  boxShadow: `0 3px 10px rgba(0, 0, 0, 0.8)`,
+  transition: "all 0.4s ease-in-out",
+}));
+
+const CustomTable = styled(Table)(({ theme }) => ({
+  backgroundColor: theme.palette.background.paper,
+  borderRadius: theme.shape.borderRadius,
+  overflow: "hidden",
+  "& th, & td": {
+    padding: theme.spacing(2),
+    textAlign: "center",
+  },
+}));
+
+const CustomTableCell = styled(TableCell)(({ theme }) => ({
+  fontWeight: 700,
+  color: theme.palette.common.white,
+  backgroundColor: colors.lighterDarkGrey,
+  borderBottom: `1px solid ${theme.palette.primary.main}`,
+}));
+
+const CustomTypography = styled(Typography)(({ theme }) => ({
+  color: theme.palette.primary.main,
+  textAlign: "center",
+  marginBottom: theme.spacing(2),
+  fontSize: "1.75rem",
+  fontWeight: 700,
+  textTransform: "uppercase",
+  letterSpacing: "1.5px",
+}));
+
+const LoadingBar = styled(LinearProgress)(({ theme }) => ({
+  marginTop: theme.spacing(2),
+  height: theme.spacing(1),
+  borderRadius: theme.shape.borderRadius,
+}));
 
 const TransactionHistory: React.FC = () => {
   const { transactions, isLoading, isError } = useTransactionsHistory();
@@ -20,11 +64,16 @@ const TransactionHistory: React.FC = () => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   if (isLoading) {
-    return <Typography>Loading...</Typography>;
+    return (
+      <CustomBox>
+        <CustomTypography>Loading...</CustomTypography>
+        <LoadingBar color="secondary" />
+      </CustomBox>
+    );
   }
 
   if (isError) {
-    return <Typography>Error loading transactions.</Typography>;
+    return <CustomTypography>Error loading transactions.</CustomTypography>;
   }
 
   const handleChangePage = (event: unknown, newPage: number) => {
@@ -39,27 +88,18 @@ const TransactionHistory: React.FC = () => {
   };
 
   return (
-    <Box
-      sx={{
-        mt: 5,
-        background: colors.darkGradientBackground,
-        padding: 3,
-        borderRadius: 2,
-      }}
-    >
-      <Typography variant="h5" mb={1.5} color="white">
-        Transaction History
-      </Typography>
+    <CustomBox>
+      <CustomTypography>Transaction History</CustomTypography>
 
-      <TableContainer component={Paper}>
-        <Table>
+      <TableContainer component={Paper} sx={{ backgroundColor: "transparent" }}>
+        <CustomTable>
           <TableHead>
             <TableRow>
-              <TableCell>Pool Name</TableCell>
-              <TableCell>Pool Address</TableCell>
-              <TableCell>Amount</TableCell>
-              <TableCell>Currency</TableCell>
-              <TableCell>Transaction Type</TableCell>
+              <CustomTableCell>Pool Name</CustomTableCell>
+              <CustomTableCell>Pool Address</CustomTableCell>
+              <CustomTableCell>Amount</CustomTableCell>
+              <CustomTableCell>Currency</CustomTableCell>
+              <CustomTableCell>Transaction Type</CustomTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -67,15 +107,17 @@ const TransactionHistory: React.FC = () => {
               ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((transaction) => (
                 <TableRow key={transaction.id}>
-                  <TableCell>{transaction.poolName}</TableCell>
-                  <TableCell>{transaction.poolAddress}</TableCell>
-                  <TableCell>{transaction.amount}</TableCell>
-                  <TableCell>{transaction.currency}</TableCell>
-                  <TableCell>{transaction.transactionType}</TableCell>
+                  <CustomTableCell>{transaction.poolName}</CustomTableCell>
+                  <CustomTableCell>{transaction.poolAddress}</CustomTableCell>
+                  <CustomTableCell>{transaction.amount}</CustomTableCell>
+                  <CustomTableCell>{transaction.currency}</CustomTableCell>
+                  <CustomTableCell>
+                    {transaction.transactionType}
+                  </CustomTableCell>
                 </TableRow>
               ))}
           </TableBody>
-        </Table>
+        </CustomTable>
         <TablePagination
           component="div"
           count={transactions?.length || 0}
@@ -83,9 +125,19 @@ const TransactionHistory: React.FC = () => {
           onPageChange={handleChangePage}
           rowsPerPage={rowsPerPage}
           onRowsPerPageChange={handleChangeRowsPerPage}
+          sx={{
+            color: "white",
+            "& .MuiTablePagination-selectLabel, & .MuiTablePagination-displayedRows":
+              {
+                color: "white",
+              },
+            "& .MuiTablePagination-selectIcon": {
+              color: "white",
+            },
+          }}
         />
       </TableContainer>
-    </Box>
+    </CustomBox>
   );
 };
 

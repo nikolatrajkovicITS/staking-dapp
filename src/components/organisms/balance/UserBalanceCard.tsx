@@ -6,6 +6,7 @@ import {
   Typography,
   Box,
   styled,
+  LinearProgress,
 } from "@mui/material";
 import useUserBalance from "@/hooks/balance/useUserBalance";
 import colors from "@/themes/colors";
@@ -17,12 +18,16 @@ const BalanceCard = styled(Card)(({ theme }) => ({
   boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
   marginBottom: theme.spacing(2),
   minWidth: 275,
+  "&:hover": {
+    boxShadow: `0 6px 30px ${theme.palette.primary.main}`,
+  },
 }));
 
 const CardTitle = styled(Typography)(({ theme }) => ({
   fontSize: theme.typography.h5.fontSize,
   fontWeight: theme.typography.h5.fontWeight,
   color: theme.palette.common.white,
+  textAlign: "center",
 }));
 
 const DataField = styled(Box)(({ theme }) => ({
@@ -45,6 +50,13 @@ const Value = styled(Typography)(({ theme }) => ({
   fontWeight: 700,
 }));
 
+// TODO: there is duplicated components like this
+const LoadingBar = styled(LinearProgress)(({ theme }) => ({
+  marginTop: theme.spacing(2),
+  height: theme.spacing(1),
+  borderRadius: theme.shape.borderRadius,
+}));
+
 interface UserBalanceProps {
   account: string;
 }
@@ -53,11 +65,28 @@ const UserBalanceCard: React.FC<UserBalanceProps> = ({ account }) => {
   const { balances, isLoading, isError } = useUserBalance(account);
 
   if (isLoading) {
-    return <Typography>Loading...</Typography>;
+    return (
+      <BalanceCard>
+        <CardHeader
+          title={<CardTitle>Loading...</CardTitle>}
+          sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
+        />
+        <CardContent>
+          <LoadingBar color="secondary" />
+        </CardContent>
+      </BalanceCard>
+    );
   }
 
   if (isError) {
-    return <Typography>Error loading balances.</Typography>;
+    return (
+      <BalanceCard>
+        <CardHeader
+          title={<CardTitle>Error loading balances</CardTitle>}
+          sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
+        />
+      </BalanceCard>
+    );
   }
 
   return (
