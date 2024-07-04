@@ -4,7 +4,7 @@ import ModalState from "@/context/modal/modal.provider";
 import ToastState from "@/context/toast/toast.provider";
 import { Web3Provider } from "@/context/web3provider/web3.provider";
 import ThemeRegistry from "@/themes/ThemeRegistry";
-import { Box } from "@mui/material";
+import { Container } from "@mui/material";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import ParticlesBackground from "@/components/atoms/ParticlesBackground";
@@ -32,12 +32,20 @@ export default function RootLayout({
             <ModalState>
               <ToastState>
                 <Header />
-
-                <Box component="main" p={4}>
-                  <ParticlesBackground />
-
+                <ParticlesBackground />
+                <Container
+                  component="main"
+                  sx={{
+                    p: 4,
+                    maxWidth: {
+                      sm: "100%",
+                      md: "90%",
+                      xl: "70%",
+                    },
+                  }}
+                >
                   {children}
-                </Box>
+                </Container>
                 <ModalManager />
               </ToastState>
             </ModalState>

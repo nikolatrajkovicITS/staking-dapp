@@ -5,22 +5,25 @@ import { useWeb3React } from "@web3-react/core";
 
 const poolData = [
   {
-    name: "Pool 1",
+    name: "Ethereum Growth Pool",
     amountDeposited: "1000 ETH",
     apy: "5%",
     rewards: "ETH",
+    imageUrl: "/assets/images/eth-pool.jfif",
   },
   {
-    name: "Pool 2",
+    name: "Bitcoin Staking Pool",
     amountDeposited: "2000 BTC",
     apy: "6%",
     rewards: "BTC",
+    imageUrl: "/assets/images/btc-pool.jfif",
   },
   {
-    name: "Pool 3",
+    name: "USDT Stability Pool",
     amountDeposited: "5000 USDT",
     apy: "4%",
     rewards: "USDT",
+    imageUrl: "/assets/images/usdt-pool.jfif",
   },
 ];
 
@@ -37,6 +40,7 @@ const Pools: React.FC = () => {
               amountDeposited={pool.amountDeposited}
               apy={pool.apy}
               rewards={pool.rewards}
+              imageUrl={pool.imageUrl}
             />
           </Grid>
         ))}

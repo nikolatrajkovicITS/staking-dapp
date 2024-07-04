@@ -1,7 +1,7 @@
 import { createTheme } from "@mui/material/styles";
 import colors from "./colors";
 
-export const theme = createTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: colors.turquoise,
@@ -115,3 +115,5 @@ export const theme = createTheme({
     },
   },
 });
+
+export default theme;

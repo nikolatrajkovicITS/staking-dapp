@@ -36,7 +36,6 @@ const StakedCard = styled(Card)(({ theme }) => ({
   color: theme.palette.text.primary,
   borderRadius: theme.shape.borderRadius,
   boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
-  overflow: "hidden",
   marginBottom: theme.spacing(2),
   minWidth: 275,
 }));

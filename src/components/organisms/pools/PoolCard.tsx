@@ -13,26 +13,27 @@ import { useWeb3React } from "@web3-react/core";
 import { ModalsKeys } from "@/context/modal/modal.types";
 import useModalState from "@/hooks/context/useModalState";
 import colors from "@/themes/colors";
-
-interface PoolCardProps {
-  name: string;
-  amountDeposited: string;
-  apy: string;
-  rewards: string;
-}
+import Avatar from "@/components/atoms/Avatar";
 
 const CardStyled = styled(Card)(({ theme }) => ({
   background: colors.darkGradientBackground,
   color: theme.palette.text.primary,
   boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
-  overflow: "hidden",
   borderRadius: "16px",
+  cursor: "pointer",
+  border: "1px solid transparent",
+
+  "&:hover": {
+    border: `1px solid ${theme.palette.primary.main}`,
+  },
 }));
 
 const CardTitle = styled(Typography)(({ theme }) => ({
-  fontSize: theme.typography.h5.fontSize,
-  fontWeight: theme.typography.h5.fontWeight,
+  fontSize: theme.typography.h6.fontSize,
+  fontWeight: theme.typography.h6.fontWeight,
   color: theme.palette.common.white,
+  textAlign: "center",
+  marginTop: theme.spacing(2),
 }));
 
 const ActionButton = styled(Button)(({ theme }) => ({
@@ -65,11 +66,20 @@ const Value = styled(Typography)(({ theme }) => ({
   fontWeight: 700,
 }));
 
+interface PoolCardProps {
+  name: string;
+  amountDeposited: string;
+  apy: string;
+  rewards: string;
+  imageUrl: string;
+}
+
 const PoolCard: React.FC<PoolCardProps> = ({
   name,
   amountDeposited,
   apy,
   rewards,
+  imageUrl,
 }) => {
   const { account } = useWeb3React();
   const { openModal } = useModalState();
@@ -88,7 +98,12 @@ const PoolCard: React.FC<PoolCardProps> = ({
   return (
     <CardStyled sx={{ minWidth: 275 }}>
       <CardHeader
-        title={<CardTitle>{name}</CardTitle>}
+        title={
+          <Box sx={{ textAlign: "center" }}>
+            <Avatar src={imageUrl} alt={name} />
+            <CardTitle>{name}</CardTitle>
+          </Box>
+        }
         sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
       />
       <CardContent>

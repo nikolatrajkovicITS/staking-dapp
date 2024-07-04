@@ -6,7 +6,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { useServerInsertedHTML } from "next/navigation";
 import { useState } from "react";
 
-import { theme } from "@/themes/MainTheme";
+import theme from "@/themes/MainTheme";
 
 // This implementation is from emotion-js
 // https://github.com/emotion-js/emotion/issues/2928#issuecomment-1319747902

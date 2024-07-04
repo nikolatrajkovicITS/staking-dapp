@@ -15,7 +15,6 @@ const BalanceCard = styled(Card)(({ theme }) => ({
   color: theme.palette.text.primary,
   borderRadius: theme.shape.borderRadius,
   boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
-  overflow: "hidden",
   marginBottom: theme.spacing(2),
   minWidth: 275,
 }));
@@ -73,15 +72,15 @@ const UserBalanceCard: React.FC<UserBalanceProps> = ({ account }) => {
           <Value>{account}</Value>
         </DataField>
         <DataField>
-          <Label>BTC Balance:</Label>
+          <Label>BTC:</Label>
           <Value>{balances?.btc}</Value>
         </DataField>
         <DataField>
-          <Label>ETH Balance:</Label>
+          <Label>ETH:</Label>
           <Value>{balances?.eth}</Value>
         </DataField>
         <DataField>
-          <Label>USDC Balance:</Label>
+          <Label>USDC:</Label>
           <Value>{balances?.usdc}</Value>
         </DataField>
       </CardContent>
