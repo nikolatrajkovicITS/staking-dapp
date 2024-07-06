@@ -1,7 +1,6 @@
 import Header from "@/components/molecules/header/Header";
 import ModalManager from "@/components/organisms/modals/ModalManager";
 import ModalState from "@/context/modal/modal.provider";
-import ToastState from "@/context/toast/toast.provider";
 import { Web3Provider } from "@/context/web3provider/web3.provider";
 import ThemeRegistry from "@/themes/ThemeRegistry";
 import { Container } from "@mui/material";
@@ -30,24 +29,22 @@ export default function RootLayout({
         <ThemeRegistry>
           <Web3Provider>
             <ModalState>
-              <ToastState>
-                <Header />
-                <ParticlesBackground />
-                <Container
-                  component="main"
-                  sx={{
-                    p: 4,
-                    maxWidth: {
-                      sm: "100%",
-                      md: "90%",
-                      xl: "70%",
-                    },
-                  }}
-                >
-                  {children}
-                </Container>
-                <ModalManager />
-              </ToastState>
+              <Header />
+              <ParticlesBackground />
+              <Container
+                component="main"
+                sx={{
+                  p: 4,
+                  maxWidth: {
+                    sm: "100%",
+                    md: "90%",
+                    xl: "70%",
+                  },
+                }}
+              >
+                {children}
+              </Container>
+              <ModalManager />
             </ModalState>
           </Web3Provider>
         </ThemeRegistry>

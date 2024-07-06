@@ -18,6 +18,7 @@ import colors from "@/themes/colors";
 import Avatar from "@/components/atoms/Avatar";
 import { useRouter } from "next/navigation";
 import { Pool } from "@/types/pool";
+import PrimaryButton from "@/components/atoms/PrimaryButton";
 
 const CardStyled = styled(Card)(({ theme }) => ({
   background: colors.darkGradientBackground,
@@ -37,15 +38,6 @@ const CardTitle = styled(Typography)(({ theme }) => ({
   color: theme.palette.common.white,
   textAlign: "center",
   marginTop: theme.spacing(2),
-}));
-
-const ActionButton = styled(Button)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
-  color: theme.palette.common.white,
-  borderRadius: theme.shape.borderRadius,
-  "&:hover": {
-    backgroundColor: theme.palette.primary.dark,
-  },
 }));
 
 const DataField = styled(Box)(({ theme }) => ({
@@ -119,7 +111,7 @@ const PoolCard: React.FC<PoolCardProps> = ({ poolData }) => {
         <Box sx={{ flexGrow: 1 }} />
         {account ? (
           <Box>
-            <ActionButton
+            <PrimaryButton
               onClick={(e) => {
                 e.stopPropagation();
                 handleOpenDeposit();
@@ -128,8 +120,8 @@ const PoolCard: React.FC<PoolCardProps> = ({ poolData }) => {
               sx={{ mr: 1 }}
             >
               Stake
-            </ActionButton>
-            <ActionButton
+            </PrimaryButton>
+            <PrimaryButton
               onClick={(e) => {
                 e.stopPropagation();
                 handleOpenWithdraw();
@@ -137,7 +129,7 @@ const PoolCard: React.FC<PoolCardProps> = ({ poolData }) => {
               variant="contained"
             >
               Withdraw
-            </ActionButton>
+            </PrimaryButton>
           </Box>
         ) : (
           <Typography component="h1" fontWeight="bold">

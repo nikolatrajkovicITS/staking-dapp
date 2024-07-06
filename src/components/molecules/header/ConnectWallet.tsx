@@ -9,22 +9,7 @@ import {
 } from "@/libs/connections";
 import MetamaskButton from "@/components/atoms/MetamaskButton";
 import { truncateAddress } from "@/utils";
-
-const DisconnectButton = styled(Button)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
-  display: "flex",
-  alignItems: "center",
-  padding: theme.spacing(1, 2),
-  borderRadius: theme.shape.borderRadius,
-  textTransform: theme.typography.button.textTransform,
-  fontWeight: theme.typography.button.fontWeight,
-  marginLeft: theme.spacing(1),
-  minWidth: 0,
-
-  "&:hover": {
-    backgroundColor: theme.palette.primary.dark,
-  },
-}));
+import PrimaryButton from "@/components/atoms/PrimaryButton";
 
 interface ConnectWalletProps {
   isEnabled: boolean;
@@ -76,14 +61,15 @@ const ConnectWallet: React.FC<ConnectWalletProps> = ({
   return (
     <Box display="flex" alignItems="center">
       {isConnected ? (
-        <DisconnectButton
+        <PrimaryButton
+          sx={{ padding: "0.7rem 1rem" }}
           onClick={handleWalletConnection}
           endIcon={<CloseIcon fontSize="large" />}
         >
           <Typography variant="body1" color="white">
             {userAddress}
           </Typography>
-        </DisconnectButton>
+        </PrimaryButton>
       ) : (
         <MetamaskButton onClick={handleWalletConnection} />
       )}
