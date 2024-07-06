@@ -5,7 +5,7 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
-  Button,
+  styled,
 } from "@mui/material";
 import useModalState from "@/hooks/context/useModalState";
 import useWithdrawModalState from "@/hooks/context/useWithdrawModalState";
@@ -13,6 +13,26 @@ import WithdrawInput from "./WithdrawInput";
 import SpinnerLoader from "@/components/molecules/loaders/SpinnerLoader";
 import WithdrawPoolInfo from "./WithdrawPoolInfo";
 import WithdrawCompleted from "./WithdrawCompleted";
+import PrimaryButton from "@/components/atoms/PrimaryButton";
+
+const DialogStyled = styled(Dialog)(({ theme }) => ({
+  background: theme.palette.background.default,
+  color: theme.palette.text.primary,
+  borderRadius: theme.shape.borderRadius,
+}));
+
+const DialogTitleStyled = styled(DialogTitle)(({ theme }) => ({
+  background: "rgba(0, 0, 0, 0.3)",
+  color: theme.palette.text.primary,
+  textAlign: "center",
+  padding: theme.spacing(2),
+}));
+
+const DialogActionsStyled = styled(DialogActions)(({ theme }) => ({
+  padding: theme.spacing(2),
+  display: "flex",
+  justifyContent: "center",
+}));
 
 const WithdrawModal: React.FC<{ handleClose: () => void }> = ({
   handleClose,
@@ -48,13 +68,13 @@ const WithdrawModal: React.FC<{ handleClose: () => void }> = ({
   };
 
   return (
-    <Dialog
+    <DialogStyled
       open={modal.withdrawModal.isOpen}
       onClose={handleClose}
       fullWidth
       maxWidth="sm"
     >
-      <DialogTitle>Withdraw 24W</DialogTitle>
+      <DialogTitleStyled>Withdraw 24W</DialogTitleStyled>
       <DialogContent>
         {loading ? (
           <SpinnerLoader />
@@ -67,22 +87,22 @@ const WithdrawModal: React.FC<{ handleClose: () => void }> = ({
           </Box>
         )}
       </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose} disabled={loading}>
+      <DialogActionsStyled>
+        <PrimaryButton onClick={handleClose} disabled={loading}>
           {completed ? "Close" : "Cancel"}
-        </Button>
+        </PrimaryButton>
         {!completed && (
-          <Button
+          <PrimaryButton
             onClick={handleWithdraw}
             variant="contained"
             color="primary"
             disabled={loading}
           >
             Withdraw
-          </Button>
+          </PrimaryButton>
         )}
-      </DialogActions>
-    </Dialog>
+      </DialogActionsStyled>
+    </DialogStyled>
   );
 };
 

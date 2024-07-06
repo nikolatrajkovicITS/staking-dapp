@@ -1,6 +1,29 @@
 import React from "react";
-import { TextField } from "@mui/material";
+import { TextField, styled } from "@mui/material";
 import useWithdrawModalState from "@/hooks/context/useWithdrawModalState";
+
+const TextFieldStyled = styled(TextField)(({ theme }) => ({
+  backgroundColor: theme.palette.background.paper,
+  borderRadius: theme.shape.borderRadius,
+  color: theme.palette.text.primary,
+  "& .MuiInputBase-root": {
+    color: theme.palette.text.primary,
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      border: `1px solid ${theme.palette.primary.dark}`,
+    },
+    "&:hover fieldset": {
+      borderColor: theme.palette.primary.main,
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: theme.palette.primary.main,
+    },
+  },
+  "& .MuiFormHelperText-root": {
+    color: theme.palette.text.secondary,
+  },
+}));
 
 const WithdrawInput: React.FC = () => {
   const { setAmount, amount, error } = useWithdrawModalState();
@@ -11,7 +34,7 @@ const WithdrawInput: React.FC = () => {
   };
 
   return (
-    <TextField
+    <TextFieldStyled
       fullWidth
       label="Amount to Withdraw"
       value={amount}
