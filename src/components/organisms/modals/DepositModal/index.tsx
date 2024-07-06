@@ -6,7 +6,6 @@ import {
   DialogContent,
   DialogActions,
   Button,
-  Typography,
 } from "@mui/material";
 import useModalState from "@/hooks/context/useModalState";
 import useDepositModalState from "@/hooks/context/useDepositModalState";
@@ -14,11 +13,6 @@ import DepositInput from "./DepositInput";
 import SpinnerLoader from "@/components/molecules/loaders/SpinnerLoader";
 import DepositPoolInfo from "./DepositPoolInfo";
 import DepositCompleted from "./DepositCompleted";
-import useToastState from "@/hooks/context/useToastState";
-import {
-  TRANSACTION_MESSAGES,
-  TransactionStatus,
-} from "@/constats/transactionStatus";
 
 const DepositModal: React.FC<{ handleClose: () => void }> = ({
   handleClose,

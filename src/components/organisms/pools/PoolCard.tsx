@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   Card,
@@ -14,6 +16,8 @@ import { ModalsKeys } from "@/context/modal/modal.types";
 import useModalState from "@/hooks/context/useModalState";
 import colors from "@/themes/colors";
 import Avatar from "@/components/atoms/Avatar";
+import { useRouter } from "next/navigation";
+import { Pool } from "@/types/pool";
 
 const CardStyled = styled(Card)(({ theme }) => ({
   background: colors.darkGradientBackground,
@@ -22,7 +26,6 @@ const CardStyled = styled(Card)(({ theme }) => ({
   borderRadius: "16px",
   cursor: "pointer",
   border: "1px solid transparent",
-
   "&:hover": {
     border: `1px solid ${theme.palette.primary.main}`,
   },
@@ -40,7 +43,6 @@ const ActionButton = styled(Button)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
   color: theme.palette.common.white,
   borderRadius: theme.shape.borderRadius,
-
   "&:hover": {
     backgroundColor: theme.palette.primary.dark,
   },
@@ -67,41 +69,34 @@ const Value = styled(Typography)(({ theme }) => ({
 }));
 
 interface PoolCardProps {
-  name: string;
-  amountDeposited: string;
-  apy: string;
-  rewards: string;
-  imageUrl: string;
+  poolData?: Pool;
 }
 
-const PoolCard: React.FC<PoolCardProps> = ({
-  name,
-  amountDeposited,
-  apy,
-  rewards,
-  imageUrl,
-}) => {
+const PoolCard: React.FC<PoolCardProps> = ({ poolData }) => {
+  const { id, name, amountDeposited, apy, rewards, imageUrl } = poolData || {};
   const { account } = useWeb3React();
   const { openModal } = useModalState();
-
-  const poolData = {
-    name: "Sample Pool",
-    totalDeposited: 1000,
-  };
+  const router = useRouter();
 
   const handleOpenDeposit = () =>
-    openModal({ name: ModalsKeys.DEPOSIT, poolData: poolData });
+    poolData && openModal({ name: ModalsKeys.DEPOSIT, poolData });
 
   const handleOpenWithdraw = () =>
-    openModal({ name: ModalsKeys.WITHDRAW, poolData: poolData });
+    poolData && openModal({ name: ModalsKeys.WITHDRAW, poolData });
+
+  const handleCardClick = () => {
+    if (id) {
+      router.push(`/pool/${id}`);
+    }
+  };
 
   return (
-    <CardStyled sx={{ minWidth: 275 }}>
+    <CardStyled sx={{ minWidth: 275 }} onClick={handleCardClick}>
       <CardHeader
         title={
           <Box sx={{ textAlign: "center" }}>
-            <Avatar src={imageUrl} alt={name} />
-            <CardTitle>{name}</CardTitle>
+            <Avatar src={imageUrl || ""} alt={name || "Pool"} />
+            <CardTitle>{name || "No Name"}</CardTitle>
           </Box>
         }
         sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
@@ -109,15 +104,15 @@ const PoolCard: React.FC<PoolCardProps> = ({
       <CardContent>
         <DataField>
           <Label>Amount Deposited:</Label>
-          <Value>{amountDeposited}</Value>
+          <Value>{amountDeposited || "N/A"}</Value>
         </DataField>
         <DataField>
           <Label>APY:</Label>
-          <Value>{apy}</Value>
+          <Value>{apy || "N/A"}</Value>
         </DataField>
         <DataField>
           <Label>Rewards:</Label>
-          <Value>{rewards}</Value>
+          <Value>{rewards || "N/A"}</Value>
         </DataField>
       </CardContent>
       <CardActions sx={{ p: 2, pt: 0 }}>
@@ -125,13 +120,22 @@ const PoolCard: React.FC<PoolCardProps> = ({
         {account ? (
           <Box>
             <ActionButton
-              onClick={handleOpenDeposit}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleOpenDeposit();
+              }}
               variant="contained"
               sx={{ mr: 1 }}
             >
               Stake
             </ActionButton>
-            <ActionButton onClick={handleOpenWithdraw} variant="contained">
+            <ActionButton
+              onClick={(e) => {
+                e.stopPropagation();
+                handleOpenWithdraw();
+              }}
+              variant="contained"
+            >
               Withdraw
             </ActionButton>
           </Box>

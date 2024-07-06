@@ -6,7 +6,6 @@ import {
   Typography,
   Box,
   styled,
-  LinearProgress,
 } from "@mui/material";
 import { useStakedBalances } from "@/hooks/balance/useStakedBalances";
 import calculateTotalStaked from "@/utils/calculateTotalStaked";
@@ -51,12 +50,6 @@ const CardTitle = styled(Typography)(({ theme }) => ({
   textAlign: "center",
 }));
 
-const LoadingBar = styled(LinearProgress)(({ theme }) => ({
-  marginTop: theme.spacing(2),
-  height: theme.spacing(1),
-  borderRadius: theme.shape.borderRadius,
-}));
-
 const StakedBalanceCard: React.FC = () => {
   const { balances, isLoading, isError } = useStakedBalances();
 
@@ -72,9 +65,6 @@ const StakedBalanceCard: React.FC = () => {
           title={<CardTitle>Loading...</CardTitle>}
           sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
         />
-        <CardContent>
-          <LoadingBar color="secondary" />
-        </CardContent>
       </StakedCard>
     );
   }

@@ -6,7 +6,6 @@ import {
   Typography,
   Box,
   styled,
-  LinearProgress,
 } from "@mui/material";
 import useUserBalance from "@/hooks/balance/useUserBalance";
 import colors from "@/themes/colors";
@@ -50,13 +49,6 @@ const Value = styled(Typography)(({ theme }) => ({
   fontWeight: 700,
 }));
 
-// TODO: there is duplicated components like this
-const LoadingBar = styled(LinearProgress)(({ theme }) => ({
-  marginTop: theme.spacing(2),
-  height: theme.spacing(1),
-  borderRadius: theme.shape.borderRadius,
-}));
-
 interface UserBalanceProps {
   account: string;
 }
@@ -71,9 +63,6 @@ const UserBalanceCard: React.FC<UserBalanceProps> = ({ account }) => {
           title={<CardTitle>Loading...</CardTitle>}
           sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
         />
-        <CardContent>
-          <LoadingBar color="secondary" />
-        </CardContent>
       </BalanceCard>
     );
   }
