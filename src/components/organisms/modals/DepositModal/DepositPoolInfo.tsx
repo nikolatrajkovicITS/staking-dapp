@@ -27,6 +27,13 @@ const Header = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
+  borderBottom: `1px solid ${theme.palette.divider}`,
+}));
+
+const PoolName = styled(Typography)(({ theme }) => ({
+  fontSize: theme.typography.h5.fontSize,
+  fontWeight: theme.typography.h5.fontWeight,
+  color: theme.palette.common.white,
 }));
 
 const InfoBox = styled(Box)(({ theme }) => ({
@@ -34,7 +41,6 @@ const InfoBox = styled(Box)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   padding: theme.spacing(3),
   boxShadow: theme.shadows[3],
-  marginBottom: theme.spacing(2),
   display: "flex",
   flexDirection: "column",
   alignItems: "flex-start",
@@ -53,12 +59,6 @@ const InfoText = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.primary,
 }));
 
-const PoolName = styled(Typography)(({ theme }) => ({
-  fontSize: theme.typography.h5.fontSize,
-  fontWeight: theme.typography.h5.fontWeight,
-  color: theme.palette.common.white,
-}));
-
 const DepositPoolInfo: React.FC<{ poolData: Pool }> = ({ poolData }) => {
   return (
     <CardStyled>
@@ -66,7 +66,7 @@ const DepositPoolInfo: React.FC<{ poolData: Pool }> = ({ poolData }) => {
         <PoolName>{poolData?.name || "No Name"}</PoolName>
         <Avatar src={poolData?.imageUrl || ""} alt={poolData?.name || "Pool"} />
       </Header>
-      <CardContent>
+      <CardContent sx={{ padding: 0 }}>
         <InfoBox>
           <InfoItem>
             <AttachMoneyIcon />

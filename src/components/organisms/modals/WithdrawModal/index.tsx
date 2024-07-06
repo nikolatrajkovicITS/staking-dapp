@@ -6,6 +6,7 @@ import {
   DialogContent,
   DialogActions,
   styled,
+  Button,
 } from "@mui/material";
 import useModalState from "@/hooks/context/useModalState";
 import useWithdrawModalState from "@/hooks/context/useWithdrawModalState";
@@ -13,23 +14,18 @@ import WithdrawInput from "./WithdrawInput";
 import SpinnerLoader from "@/components/molecules/loaders/SpinnerLoader";
 import WithdrawPoolInfo from "./WithdrawPoolInfo";
 import WithdrawCompleted from "./WithdrawCompleted";
-import PrimaryButton from "@/components/atoms/PrimaryButton";
 
 const DialogStyled = styled(Dialog)(({ theme }) => ({
   background: theme.palette.background.default,
-  color: theme.palette.text.primary,
-  borderRadius: theme.shape.borderRadius,
 }));
 
 const DialogTitleStyled = styled(DialogTitle)(({ theme }) => ({
   background: "rgba(0, 0, 0, 0.3)",
-  color: theme.palette.text.primary,
   textAlign: "center",
-  padding: theme.spacing(2),
 }));
 
 const DialogActionsStyled = styled(DialogActions)(({ theme }) => ({
-  padding: theme.spacing(2),
+  paddingBottom: theme.spacing(2),
   display: "flex",
   justifyContent: "center",
 }));
@@ -88,18 +84,18 @@ const WithdrawModal: React.FC<{ handleClose: () => void }> = ({
         )}
       </DialogContent>
       <DialogActionsStyled>
-        <PrimaryButton onClick={handleClose} disabled={loading}>
+        <Button onClick={handleClose} disabled={loading}>
           {completed ? "Close" : "Cancel"}
-        </PrimaryButton>
+        </Button>
         {!completed && (
-          <PrimaryButton
+          <Button
             onClick={handleWithdraw}
             variant="contained"
             color="primary"
             disabled={loading}
           >
             Withdraw
-          </PrimaryButton>
+          </Button>
         )}
       </DialogActionsStyled>
     </DialogStyled>

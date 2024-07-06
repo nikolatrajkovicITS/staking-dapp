@@ -29,7 +29,7 @@ const DialogTitleStyled = styled(DialogTitle)(({ theme }) => ({
 }));
 
 const DialogActionsStyled = styled(DialogActions)(({ theme }) => ({
-  padding: theme.spacing(2),
+  paddingBottom: theme.spacing(2),
   display: "flex",
   justifyContent: "center",
 }));
