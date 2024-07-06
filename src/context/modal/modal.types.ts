@@ -1,3 +1,5 @@
+import { Pool } from "@/types/pool";
+
 export type ModalBase = {
   isOpen: boolean;
 };
@@ -21,8 +23,8 @@ export type ModalData<T = void> = T extends void ? ModalBase : T & ModalBase;
 
 export type Modals = {
   transactionProcessingModal: ModalData;
-  withdrawModal: ModalData<{ poolData: any }>; // TODO: add interface for poolData
-  depositModal: ModalData<{ poolData: any }>;
+  withdrawModal: ModalData<{ poolData: Pool }>;
+  depositModal: ModalData<{ poolData: Pool }>;
 };
 
 export type ModalWithProps = Extract<

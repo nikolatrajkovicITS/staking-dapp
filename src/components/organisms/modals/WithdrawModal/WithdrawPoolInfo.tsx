@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Typography, styled } from "@mui/material";
+import { Pool } from "@/types/pool";
 
 const InfoBox = styled(Box)(({ theme }) => ({
   background: theme.palette.background.default,
@@ -15,7 +16,7 @@ const InfoItem = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.primary,
 }));
 
-const WithdrawPoolInfo: React.FC<{ poolData: any }> = ({ poolData }) => {
+const WithdrawPoolInfo: React.FC<{ poolData: Pool }> = ({ poolData }) => {
   return (
     <InfoBox>
       <InfoItem variant="h6">Pool Information</InfoItem>
@@ -29,7 +30,7 @@ const WithdrawPoolInfo: React.FC<{ poolData: any }> = ({ poolData }) => {
         <strong>Total Liquidity:</strong> {poolData?.totalLiquidity} 24W
       </InfoItem>
       <InfoItem variant="body1">
-        <strong>User Deposited:</strong> {poolData?.userDeposited} 24W
+        <strong>User Deposited:</strong> {poolData?.amountDeposited} 24W
       </InfoItem>
     </InfoBox>
   );

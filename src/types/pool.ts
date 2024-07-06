@@ -5,4 +5,5 @@ export interface Pool {
   apy: string;
   rewards: string;
   imageUrl: string;
+  totalLiquidity: string;
 }

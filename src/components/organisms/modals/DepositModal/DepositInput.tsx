@@ -1,6 +1,31 @@
 import React from "react";
-import { TextField } from "@mui/material";
+import { TextField, styled } from "@mui/material";
 import useDepositModalState from "@/hooks/context/useDepositModalState";
+
+const TextFieldStyled = styled(TextField)(({ theme }) => ({
+  backgroundColor: theme.palette.background.paper,
+  borderRadius: theme.shape.borderRadius,
+  color: theme.palette.text.primary,
+
+  "& .MuiInputBase-root": {
+    color: theme.palette.text.primary,
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: theme.palette.divider,
+      border: `1px solid ${theme.palette.primary.dark}`,
+    },
+    "&:hover fieldset": {
+      borderColor: theme.palette.primary.main,
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: theme.palette.primary.main,
+    },
+  },
+  "& .MuiFormHelperText-root": {
+    color: theme.palette.text.secondary,
+  },
+}));
 
 const DepositInput: React.FC = () => {
   const { setAmount, error, amount } = useDepositModalState();
@@ -11,7 +36,7 @@ const DepositInput: React.FC = () => {
   };
 
   return (
-    <TextField
+    <TextFieldStyled
       fullWidth
       label="Amount to Deposit"
       value={amount}

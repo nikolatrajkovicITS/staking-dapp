@@ -9,6 +9,7 @@ const poolData: Pool[] = [
     apy: "5%",
     rewards: "ETH",
     imageUrl: "/assets/images/eth-pool.jfif",
+    totalLiquidity: "10000 ETH",
   },
   {
     id: "2",
@@ -17,6 +18,7 @@ const poolData: Pool[] = [
     apy: "6%",
     rewards: "BTC",
     imageUrl: "/assets/images/btc-pool.jfif",
+    totalLiquidity: "20000 BTC",
   },
   {
     id: "3",
@@ -25,6 +27,7 @@ const poolData: Pool[] = [
     apy: "4%",
     rewards: "USDT",
     imageUrl: "/assets/images/usdt-pool.jfif",
+    totalLiquidity: "50000 USDT",
   },
 ];
 
