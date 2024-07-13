@@ -2,11 +2,10 @@ import React from "react";
 import {
   Box,
   Dialog,
-  DialogTitle,
   DialogContent,
   DialogActions,
-  styled,
   Button,
+  Typography,
 } from "@mui/material";
 import useModalState from "@/hooks/context/useModalState";
 import useWithdrawModalState from "@/hooks/context/useWithdrawModalState";
@@ -14,21 +13,6 @@ import WithdrawInput from "./WithdrawInput";
 import SpinnerLoader from "@/components/molecules/loaders/SpinnerLoader";
 import WithdrawPoolInfo from "./WithdrawPoolInfo";
 import WithdrawCompleted from "./WithdrawCompleted";
-
-const DialogStyled = styled(Dialog)(({ theme }) => ({
-  background: theme.palette.background.default,
-}));
-
-const DialogTitleStyled = styled(DialogTitle)(({ theme }) => ({
-  background: "rgba(0, 0, 0, 0.3)",
-  textAlign: "center",
-}));
-
-const DialogActionsStyled = styled(DialogActions)(({ theme }) => ({
-  paddingBottom: theme.spacing(2),
-  display: "flex",
-  justifyContent: "center",
-}));
 
 const WithdrawModal: React.FC<{ handleClose: () => void }> = ({
   handleClose,
@@ -64,13 +48,16 @@ const WithdrawModal: React.FC<{ handleClose: () => void }> = ({
   };
 
   return (
-    <DialogStyled
+    <Dialog
       open={modal.withdrawModal.isOpen}
       onClose={handleClose}
       fullWidth
       maxWidth="sm"
     >
-      <DialogTitleStyled>Withdraw 24W</DialogTitleStyled>
+      <Typography variant="h4" textAlign="center" mt={2}>
+        Withdraw
+      </Typography>
+
       <DialogContent>
         {loading ? (
           <SpinnerLoader />
@@ -83,7 +70,8 @@ const WithdrawModal: React.FC<{ handleClose: () => void }> = ({
           </Box>
         )}
       </DialogContent>
-      <DialogActionsStyled>
+
+      <DialogActions sx={{ display: "flex", justifyContent: "center", pb: 2 }}>
         <Button onClick={handleClose} disabled={loading}>
           {completed ? "Close" : "Cancel"}
         </Button>
@@ -97,8 +85,8 @@ const WithdrawModal: React.FC<{ handleClose: () => void }> = ({
             Withdraw
           </Button>
         )}
-      </DialogActionsStyled>
-    </DialogStyled>
+      </DialogActions>
+    </Dialog>
   );
 };
 

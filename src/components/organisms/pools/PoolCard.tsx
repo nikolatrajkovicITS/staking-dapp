@@ -7,7 +7,6 @@ import {
   CardHeader,
   CardActions,
   Typography,
-  Button,
   Box,
   styled,
 } from "@mui/material";
@@ -15,10 +14,11 @@ import { useWeb3React } from "@web3-react/core";
 import { ModalsKeys } from "@/context/modal/modal.types";
 import useModalState from "@/hooks/context/useModalState";
 import colors from "@/themes/colors";
-import Avatar from "@/components/atoms/Avatar";
+import Avatar from "@/components/molecules/Avatar";
 import { useRouter } from "next/navigation";
 import { Pool } from "@/types/pool";
 import PrimaryButton from "@/components/atoms/PrimaryButton";
+import CheckIcon from "@mui/icons-material/Check";
 
 const CardStyled = styled(Card)(({ theme }) => ({
   background: colors.darkGradientBackground,
@@ -87,7 +87,11 @@ const PoolCard: React.FC<PoolCardProps> = ({ poolData }) => {
       <CardHeader
         title={
           <Box sx={{ textAlign: "center" }}>
-            <Avatar src={imageUrl || ""} alt={name || "Pool"} />
+            <Avatar
+              src={imageUrl || ""}
+              alt={name || "Pool"}
+              icon={<CheckIcon sx={{ color: "white", fontSize: 16 }} />}
+            />
             <CardTitle>{name || "No Name"}</CardTitle>
           </Box>
         }

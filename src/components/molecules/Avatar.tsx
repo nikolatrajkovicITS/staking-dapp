@@ -1,7 +1,12 @@
 import React from "react";
-import { Avatar as MuiAvatar, Box, styled } from "@mui/material";
+import {
+  Avatar as MuiAvatar,
+  Box,
+  styled,
+  SxProps,
+  Theme,
+} from "@mui/material";
 import Image from "next/image";
-import CheckIcon from "@mui/icons-material/Check";
 
 const StyledAvatar = styled(MuiAvatar)(({ theme }) => ({
   width: 78,
@@ -29,11 +34,13 @@ const CheckIconWrapper = styled(Box)(({ theme }) => ({
 interface AvatarProps {
   src: string;
   alt: string;
+  icon?: React.ReactNode;
+  containerSx?: SxProps<Theme>;
 }
 
-const Avatar: React.FC<AvatarProps> = ({ src, alt }) => (
-  <Box display="flex" justifyContent="center" mt={2}>
-    <StyledAvatar>
+const Avatar: React.FC<AvatarProps> = ({ src, alt, icon, containerSx }) => (
+  <Box display="flex" justifyContent="center">
+    <StyledAvatar sx={containerSx}>
       <Image
         src={src}
         alt={alt}
@@ -41,9 +48,7 @@ const Avatar: React.FC<AvatarProps> = ({ src, alt }) => (
         objectFit="cover"
         style={{ borderRadius: "50%" }}
       />
-      <CheckIconWrapper>
-        <CheckIcon sx={{ color: "white", fontSize: 16 }} />
-      </CheckIconWrapper>
+      {icon && <CheckIconWrapper>{icon}</CheckIconWrapper>}
     </StyledAvatar>
   </Box>
 );

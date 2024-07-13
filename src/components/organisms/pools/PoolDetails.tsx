@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { useWeb3React } from "@web3-react/core";
 import colors from "@/themes/colors";
-import Avatar from "@/components/atoms/Avatar";
+import Avatar from "@/components/molecules/Avatar";
 import { Pool } from "@/types/pool";
 import useModalState from "@/hooks/context/useModalState";
 import { ModalsKeys } from "@/context/modal/modal.types";

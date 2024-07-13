@@ -2,11 +2,11 @@ import React from "react";
 import {
   Box,
   Dialog,
-  DialogTitle,
   DialogContent,
   DialogActions,
   Button,
   styled,
+  Typography,
 } from "@mui/material";
 import useModalState from "@/hooks/context/useModalState";
 import useDepositModalState from "@/hooks/context/useDepositModalState";
@@ -19,19 +19,7 @@ const DialogStyled = styled(Dialog)(({ theme }) => ({
   background: theme.palette.background.default,
   color: theme.palette.text.primary,
   borderRadius: theme.shape.borderRadius,
-}));
-
-const DialogTitleStyled = styled(DialogTitle)(({ theme }) => ({
-  background: "rgba(0, 0, 0, 0.3)",
-  color: theme.palette.text.primary,
-  textAlign: "center",
-  padding: theme.spacing(2),
-}));
-
-const DialogActionsStyled = styled(DialogActions)(({ theme }) => ({
-  paddingBottom: theme.spacing(2),
-  display: "flex",
-  justifyContent: "center",
+  p: 2,
 }));
 
 const DepositModal: React.FC<{ handleClose: () => void }> = ({
@@ -74,7 +62,9 @@ const DepositModal: React.FC<{ handleClose: () => void }> = ({
       fullWidth
       maxWidth="sm"
     >
-      <DialogTitleStyled>Deposit 24W</DialogTitleStyled>
+      <Typography variant="h4" textAlign="center" mt={2}>
+        Deposit
+      </Typography>
       <DialogContent>
         {loading ? (
           <SpinnerLoader />
@@ -87,7 +77,8 @@ const DepositModal: React.FC<{ handleClose: () => void }> = ({
           </Box>
         )}
       </DialogContent>
-      <DialogActionsStyled>
+
+      <DialogActions sx={{ display: "flex", justifyContent: "center", pb: 2 }}>
         <Button onClick={handleClose} disabled={loading}>
           {completed ? "Close" : "Cancel"}
         </Button>
@@ -101,7 +92,7 @@ const DepositModal: React.FC<{ handleClose: () => void }> = ({
             Deposit
           </Button>
         )}
-      </DialogActionsStyled>
+      </DialogActions>
     </DialogStyled>
   );
 };
