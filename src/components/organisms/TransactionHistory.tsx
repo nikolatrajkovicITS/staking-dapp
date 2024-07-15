@@ -11,10 +11,10 @@ import {
   Paper,
   TablePagination,
   styled,
-  LinearProgress,
 } from "@mui/material";
 import useTransactionsHistory from "@/hooks/useTransactionsHistory";
 import colors from "@/themes/colors";
+import LoadingBar from "../molecules/loaders/LoadingBar";
 
 const CustomBox = styled(Box)(({ theme }) => ({
   marginTop: theme.spacing(5),
@@ -50,12 +50,6 @@ const CustomTypography = styled(Typography)(({ theme }) => ({
   fontWeight: 700,
   textTransform: "uppercase",
   letterSpacing: "1.5px",
-}));
-
-const LoadingBar = styled(LinearProgress)(({ theme }) => ({
-  marginTop: theme.spacing(2),
-  height: theme.spacing(1),
-  borderRadius: theme.shape.borderRadius,
 }));
 
 const TransactionHistory: React.FC = () => {
