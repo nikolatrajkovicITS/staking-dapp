@@ -1,53 +1,8 @@
 import React from "react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  Typography,
-  Box,
-  styled,
-} from "@mui/material";
+import { CardContent, CardHeader, Typography } from "@mui/material";
 import useUserBalance from "@/hooks/balance/useUserBalance";
-import colors from "@/themes/colors";
-
-const BalanceCard = styled(Card)(({ theme }) => ({
-  background: colors.darkGradientBackground,
-  color: theme.palette.text.primary,
-  borderRadius: theme.shape.borderRadius,
-  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
-  marginBottom: theme.spacing(2),
-  minWidth: 275,
-  "&:hover": {
-    boxShadow: `0 6px 30px ${theme.palette.primary.main}`,
-  },
-}));
-
-const CardTitle = styled(Typography)(({ theme }) => ({
-  fontSize: theme.typography.h5.fontSize,
-  fontWeight: theme.typography.h5.fontWeight,
-  color: theme.palette.common.white,
-  textAlign: "center",
-}));
-
-const DataField = styled(Box)(({ theme }) => ({
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  padding: theme.spacing(1),
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: "rgba(255, 255, 255, 0.1)",
-  marginBottom: theme.spacing(1),
-}));
-
-const Label = styled(Typography)(({ theme }) => ({
-  color: theme.palette.text.secondary,
-  fontWeight: 600,
-}));
-
-const Value = styled(Typography)(({ theme }) => ({
-  color: theme.palette.common.white,
-  fontWeight: 700,
-}));
+import DataField from "@/components/atoms/DataField";
+import BalanceOverviewCard from "@/components/atoms/BalanceOverviewCard";
 
 interface UserBalanceProps {
   account: string;
@@ -58,51 +13,79 @@ const UserBalanceCard: React.FC<UserBalanceProps> = ({ account }) => {
 
   if (isLoading) {
     return (
-      <BalanceCard>
+      <BalanceOverviewCard>
         <CardHeader
-          title={<CardTitle>Loading...</CardTitle>}
+          title={
+            <Typography variant="h5" color="white" mt={2}>
+              Loading...
+            </Typography>
+          }
           sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
         />
-      </BalanceCard>
+      </BalanceOverviewCard>
     );
   }
 
   if (isError) {
     return (
-      <BalanceCard>
+      <BalanceOverviewCard>
         <CardHeader
-          title={<CardTitle>Error loading balances</CardTitle>}
+          title={
+            <Typography variant="h5" color="white" mt={2}>
+              Error loading balances
+            </Typography>
+          }
           sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
         />
-      </BalanceCard>
+      </BalanceOverviewCard>
     );
   }
 
   return (
-    <BalanceCard>
+    <BalanceOverviewCard>
       <CardHeader
-        title={<CardTitle>Account Balance</CardTitle>}
+        title={
+          <Typography variant="h5" color="white" mt={2}>
+            Account Balance
+          </Typography>
+        }
         sx={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
       />
       <CardContent>
         <DataField>
-          <Label>Account Address:</Label>
-          <Value>{account}</Value>
+          <Typography color="text.secondary" fontWeight={600}>
+            Account Address:
+          </Typography>
+          <Typography color="white" fontWeight={700}>
+            {account}
+          </Typography>
         </DataField>
         <DataField>
-          <Label>BTC:</Label>
-          <Value>{balances?.btc}</Value>
+          <Typography color="text.secondary" fontWeight={600}>
+            BTC:
+          </Typography>
+          <Typography color="white" fontWeight={700}>
+            {balances?.btc}
+          </Typography>
         </DataField>
         <DataField>
-          <Label>ETH:</Label>
-          <Value>{balances?.eth}</Value>
+          <Typography color="text.secondary" fontWeight={600}>
+            ETH:
+          </Typography>
+          <Typography color="white" fontWeight={700}>
+            {balances?.eth}
+          </Typography>
         </DataField>
         <DataField>
-          <Label>USDC:</Label>
-          <Value>{balances?.usdc}</Value>
+          <Typography color="text.secondary" fontWeight={600}>
+            USDC:
+          </Typography>
+          <Typography color="white" fontWeight={700}>
+            {balances?.usdc}
+          </Typography>
         </DataField>
       </CardContent>
-    </BalanceCard>
+    </BalanceOverviewCard>
   );
 };
 
